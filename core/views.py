@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Prefetch
+from django.contrib.staticfiles import finders
+from django.http import FileResponse
 from .models import SkillCategory, Skill, SocialUser
 from projects.models import Project
 
@@ -21,3 +23,7 @@ def home(request):
         'email': email,
         'projects': projects,
     })
+
+def robots_txt(request):
+    path = finders.find('robots.txt')
+    return FileResponse(open(path, 'rb'), content_type="text/plain")

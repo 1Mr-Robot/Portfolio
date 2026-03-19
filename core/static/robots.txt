@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/
+Allow: /
+
+# Host
+Host: https://uziel.app
+
+# Sitemaps
+Sitemap: https://uziel.app/sitemap.xml
