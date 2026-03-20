@@ -32,14 +32,18 @@
     <h1>{{ project.title }}</h1>
     <p class="title_footer">{{ project.summary }} • Finalizado el {{ project.end_date }}</p>
     <div class="links_container">
-        <a href="#about_me" class="link primary_link">
+        {% if project.demo_url %}
+        <a href="{{ project.demo_url }}" class="link primary_link">
             {% include 'icons/rocket.svg' %}
             Demo en vivo
         </a>
-        <a href="#projects" class="link secondary_link">
+        {% endif %}
+        {% if project.repository_url %}
+        <a href="{{ project.repository_url }}" class="link secondary_link">
             {% include 'icons/github.svg' %}
             Repositorio
         </a>
+        {% endif %}
     </div>
 
     <div id="carousel" class="carousel slide" data-bs-ride="carousel">
@@ -172,7 +176,7 @@
             {% endfor %}
         </div>
     </section>
-    <!-- Copy toast -->
+    {# Copy toast #}
     <div id="toast_container" class="position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index: 11">
         <div id="copy_toast" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
