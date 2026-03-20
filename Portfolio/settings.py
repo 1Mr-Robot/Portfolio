@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+    'django_ckeditor_5',
     'adminsortable2',
-    'ckeditor',
     'core',
     'projects'
 ]
@@ -131,32 +131,26 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 #CkEditor
-CKEDITOR_CONFIGS = {
+CKEDITOR_5_CONFIGS = {
     'default': {
         'toolbar': [
-            # Primera fila (limpia)
-            ['Preview', 'Templates'],
-            ['PasteText', 'PasteFromWord'],
-            ['Undo', 'Redo'],
-            ['Find', 'SelectAll'],
-
-            # Segunda fila (todo menos lo que NO quieres)
-            [
-                'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript',
-                'RemoveFormat',
-                'NumberedList', 'BulletedList',
-                'Outdent', 'Indent',
-                'Blockquote',
-                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
-                'Link', 'Unlink',
-                'Image', 'Table', 'HorizontalRule', 'SpecialChar',
-                'Styles', 'Format', 'Font', 'FontSize',
-                'TextColor', 'BGColor',
-                'Maximize', 'ShowBlocks'
-            ]
+            'heading', '|',
+            'bold', 'italic', 'underline', 'strikethrough',
+            '|',
+            'numberedList', 'bulletedList',
+            '|',
+            'outdent', 'indent',
+            '|',
+            'blockQuote',
+            '|',
+            'alignment:left', 'alignment:center', 'alignment:right', 'alignment:justify',
+            '|',
+            'link',
+            '|',
+            'imageUpload', 'insertTable',
+            '|',
+            'undo', 'redo'
         ],
-        'height': 300,
-        'width': '100%',
-        
+        'height': '300px'
     }
 }
