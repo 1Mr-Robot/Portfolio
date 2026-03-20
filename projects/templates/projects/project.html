@@ -2,7 +2,13 @@
 
 {% load static %}
 
-{% block title %}Uziel Flores | {{project.title}}{% endblock title %}
+{% block meta_tags %}
+<c-head
+    title="Uziel Flores | {{ project.title }}"
+    description="{{ project.short_description }}"
+    og-description="{{ project.short_description }}"
+    og-image-alt=""/>
+{% endblock meta_tags %}
 
 {% block extra_style %}
 <link rel="stylesheet" href="{% static 'core/styles/projects.css' %}">
