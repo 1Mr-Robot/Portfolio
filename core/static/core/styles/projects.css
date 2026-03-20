@@ -102,7 +102,6 @@
 
 .card .card_body {
     padding: 10px;
-    position: relative;
 }
 
 .card h3 {
@@ -167,6 +166,10 @@
     text-decoration: none;
     font-size: 0.9rem;
     transition: text-decoration 0.5s ease, transform 0.3s ease;
+}
+
+.card a.double_column {
+    grid-column: span 2;
 }
 
 .card .card_links_container svg {

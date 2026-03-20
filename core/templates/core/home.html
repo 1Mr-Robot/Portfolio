@@ -136,11 +136,18 @@
                 </div>
                 <p>{{ project.short_description }}</p>
                 <div class="card_links_container">
+                    {% if project.demo_url %}
                     <a href="{{ project.demo_url }}">
                         {% include 'icons/rocket.svg' %}
                         Ver demo
                     </a>
-                    <a href="{% url 'project' project.slug %}">
+                    {% elif project.repository_url %}
+                    <a href="{{ project.repository_url }}">
+                        {% include 'icons/github.svg' %}
+                        Ver repositorio
+                    </a>
+                    {% endif %}
+                    <a href="{% url 'project' project.slug %}" {% if not project.demo_url and not project.repository_url %}class="double_column"{% endif %}>
                         {% include 'icons/info.svg' %}
                         Más info
                     </a>

@@ -2,6 +2,22 @@ from django.contrib import admin
 from adminsortable2.admin import SortableAdminMixin
 from .models import *
 
+class ProjectImageInline(admin.TabularInline):
+    model = ProjectImage
+    extra = 1
+    ordering = ('order',)
+
+class ProjectCharacteristicInline(admin.TabularInline):
+    model = ProjectCharacteristic
+    extra = 1
+    ordering = ('order',)
+
+class ProjectTechnologyLinkInline(admin.TabularInline):
+    model = ProjectTechnologyLink
+    extra = 1
+    ordering = ('order',)
+    autocomplete_fields = ('technology',)
+
 @admin.register(ProjectType)
 class ProjectTypeAdmin(admin.ModelAdmin):
     readonly_fields = ('created', 'modified')
@@ -22,9 +38,15 @@ class ProjectAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display = ('title', 'project_type', 'project_role', 'end_date', 'active', 'order')
     list_filter = ('project_type', 'project_role', 'active',)
     search_fields = ('title', 'description', 'summary')
+    prepopulated_fields = {'slug': ('title',)}
     ordering = ('order',)
     date_hierarchy = 'created'
     sortable_by = ('order',)
+    inlines = [
+        ProjectImageInline,
+        ProjectCharacteristicInline,
+        ProjectTechnologyLinkInline,
+    ]
 
 @admin.register(ProjectImage)
 class ProjectImageAdmin(SortableAdminMixin, admin.ModelAdmin):
