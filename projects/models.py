@@ -1,7 +1,4 @@
 from django.db import models
-from PIL import Image
-from io import BytesIO
-from django.core.files.base import ContentFile
 from django_ckeditor_5.fields import CKEditor5Field
 import os
 
@@ -76,28 +73,6 @@ class ProjectImage(models.Model):
         ordering = ['order']
         verbose_name = 'Imagen de proyecto'
         verbose_name_plural = 'Imágenes de proyectos'
-
-    def save(self, *args, **kwargs):
-        if self.image:
-            img = Image.open(self.image)
-
-            # Convertir a RGB si es PNG con transparencia
-            if img.mode in ("RGBA", "P"):
-                img = img.convert("RGB")
-
-            buffer = BytesIO()
-            img.save(buffer, format="WEBP", quality=85)
-            buffer.seek(0)
-
-            # Cambiar extensión
-            name = os.path.splitext(self.image.name)[0]
-            self.image.save(
-                f"{name}.webp",
-                ContentFile(buffer.read()),
-                save=False
-            )
-
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Image for {self.project.title} - {self.caption}"
