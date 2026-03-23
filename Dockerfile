@@ -1,4 +1,4 @@
-FROM python:3.12
+FROM python:3.11
 
 # Evita archivos .pyc y buffer
 ENV PYTHONDONTWRITEBYTECODE=1
