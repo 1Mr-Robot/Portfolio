@@ -14,6 +14,12 @@ RUN pip install --upgrade pip && \
 
 COPY ./ ./
 
+# Crear las carpetas por si no existen
+RUN mkdir -p /app/staticfiles /app/media
+
+# Dar permisos totales a la carpeta de media
+RUN chmod -R 777 /app/media
+
 # Dar permisos al entrypoint
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
