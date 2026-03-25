@@ -39,7 +39,7 @@ services:
     container_name: nginx
     restart: always
     ports:
-      - "80:80" # Puerto de entrada
+      - "8000:80" # Puerto de entrada
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - static_volume:/app/static
