@@ -225,6 +225,128 @@ Para verificar el sitemap:
 http://127.0.0.1:8000/sitemap.xml
 ```
 
+## Dockerizacion del proyecto
+
+El proyecto esta configurado para ejecutarse en contenedores Docker con tres servicios: MySQL, Django (Gunicorn) y Nginx.
+
+### Estructura de contenedores
+
+| Servicio | Imagen | Descripcion |
+|----------|--------|-------------|
+| `db` | mysql:8 | Base de datos MySQL 8 |
+| `web` | Dockerfile | Aplicacion Django con Gunicorn |
+| `nginx` | nginx:alpine | Servidor web inverso |
+
+### Variables de entorno
+
+Copia `.env.example` a `.env` y configura las siguientes variables:
+
+```env
+# Configuracion Django
+DEBUG=False
+SECRET_KEY=tu-clave-secreta-segura
+ALLOWED_HOSTS=tudominio.com,www.tudominio.com
+CSRF_TRUSTED_ORIGINS=https://tudominio.com
+
+# Superuser (se crea automaticamente)
+SUPERUSER_USERNAME=admin
+SUPERUSER_EMAIL=admin@tudominio.com
+SUPERUSER_PASSWORD=password-seguro
+
+# Base de datos MySQL
+DB_NAME=portfolio
+DB_USER=user
+DB_PASSWORD=super_secure_password
+DB_HOST=db
+DB_PORT=3306
+
+# Variables MySQL (deben coincidir con DB_*)
+MYSQL_DATABASE=portfolio
+MYSQL_USER=user
+MYSQL_PASSWORD=super_secure_password
+MYSQL_ROOT_PASSWORD=very_strong_root_password
+```
+
+### Ejecutar con Docker Compose
+
+1. Construir y ejecutar los contenedores:
+
+```bash
+docker-compose up --build
+```
+
+2. La aplicacion estara disponible en `http://localhost:8000`
+
+3. Para detener los contenedores:
+
+```bash
+docker-compose down
+```
+
+Para ejecutar en segundo plano:
+
+```bash
+docker-compose up -d --build
+```
+
+Ver logs:
+
+```bash
+docker-compose logs -f web
+```
+
+### Volumenes persistentes
+
+Los volumenes Docker mantienen los datos persistentes:
+
+- `mysql_data`: Datos de la base de datos MySQL
+- `static_volume`: Archivos estaticos de Django
+- `media_volume`: Archivos subidos por usuarios
+
+### Nginx
+
+Nginx actua como servidor web inverso y sirve:
+
+- Archivos estaticos (`/static/`) desde el volumen
+- Archivos media (`/media/`) desde el volumen
+- Peticiones dinamicas dirigidas a Gunicorn (`/`)
+
+Configuracion en `nginx/default.conf`:
+
+- Puerto de entrada: 80
+- Tamano maximo de subida: 20MB
+- Proxy a Django: `http://web:8000`
+
+### Ejecucion sin Docker Compose
+
+Si deseas ejecutar solo el contenedor Django con una base de datos MySQL local:
+
+```bash
+# Construir imagen
+docker build -t portfolio .
+
+# Ejecutar contenedor
+docker run -p 8000:8000 --env-file .env portfolio
+```
+
+Configura `.env` con los valores de tu base de datos local:
+
+```env
+DB_NAME=portfolio
+DB_USER=root
+DB_PASSWORD=password
+DB_HOST=host.docker.internal
+DB_PORT=3306
+```
+
+> **Nota**: En Windows, `host.docker.internal` permite acceder al servidor host.
+
+### Personalizacion
+
+- **Puertos**: Modifica los puertos en `docker-compose.yml`
+- **Dominio**: Cambia `server_name` en `nginx/default.conf`
+- **Superuser**: Las variables `SUPERUSER_*` crean el admin automaticamente en el primer inicio
+
 ## Configuracion de produccion
 
 Para desplegar en produccion:
