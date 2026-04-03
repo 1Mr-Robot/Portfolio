@@ -125,7 +125,7 @@
 .span_container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 6px;
     margin-bottom: 5px;
 }
 
@@ -134,7 +134,7 @@
     font-weight: bold;
     display: flex;
     align-items: center;
-    padding: 3px 10px;
+    padding: 3px 12px;
     border: none;
     background-color: rgba(var(--acent-soft-rgb) / 0.2);
     border-radius: 9999px;
