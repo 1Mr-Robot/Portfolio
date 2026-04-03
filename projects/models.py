@@ -96,7 +96,6 @@ class ProjectCharacteristic(models.Model):
     
 class ProjectTechnology(models.Model):
     name = models.CharField(max_length=100, verbose_name='Nombre')
-    icon = models.TextField(verbose_name="Ícono", help_text="SVG del ícono")
     created = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creado')
     modified = models.DateTimeField(auto_now=True, verbose_name='Fecha de modificado')
 

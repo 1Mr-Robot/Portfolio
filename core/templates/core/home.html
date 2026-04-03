@@ -128,7 +128,6 @@
                 <div class="span_container">
                     {% for link in project.technology_links.all %}
                     <span>
-                        {{ link.technology.icon|safe }}
                         {{ link.technology.name }}
                     </span>
                     {% endfor %}

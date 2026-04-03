@@ -123,22 +123,11 @@
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 3px 7px;
+    padding: 3px 10px;
     border: none;
     background-color: rgba(var(--acent-soft-rgb) / 0.2);
     border-radius: 9999px;
     color: var(--accent-cool);
-}
-
-.span_container span svg {
-    height: 1.2rem;
-    width: 1.2rem;
-    color: var(--accent-cool);
-}
-
-.span_container span svg path {
-    fill: var(--accent-cool);
 }
 
 .card p {

@@ -500,11 +500,6 @@ p {
     transition: color 0.3s ease, border-color 0.3s ease;
 }
 
-.span_container span svg path {
-    fill: var(--text-medium);
-    transition: fill 0.3s ease;
-}
-
 .project:hover .project_inner {
     border-color: var(--accent-cool);
 }
@@ -525,10 +520,6 @@ p {
 .project:hover span {
     border-color: var(--text-high);
     color: var(--text-high);
-}
-
-.project:hover .span_container span svg path {
-    fill: var(--text-high);
 }
 
 .project:active .project_inner {
