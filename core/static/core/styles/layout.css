@@ -7,7 +7,7 @@ html {
 }
 
 body {
-    background-color: var(--background);
+    background: linear-gradient(to bottom,var(--background-1), var(--background-2), var(--background-3));
     color: var(--text-high);
     font-family: "poppins-medium", sans-serif;
     font-style: normal;
