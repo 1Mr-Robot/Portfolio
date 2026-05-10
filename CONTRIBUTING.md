@@ -12,10 +12,10 @@ Esta guia cubre todo lo necesario para configurar el proyecto en un entorno de d
 
 ```
 Portfolio/
-├── Portfolio/           # Configuracion del proyecto Django
-├── core/                # App: habilidades, redes sociales, vistas principales
-├── projects/            # App: proyectos, imagenes, tecnologias
-├── media/               # Archivos subidos por usuarios
+├── Portfolio/            # Configuracion del proyecto Django
+├── core/                 # App: habilidades, redes sociales, vistas principales
+├── projects/             # App: proyectos, imagenes, tecnologias
+├── media/                # Archivos subidos por usuarios
 ├── manage.py             # CLI de Django
 ├── requirements.txt      # Dependencias de produccion
 ├── requirements-dev.txt  # Dependencias de desarrollo
@@ -247,6 +247,8 @@ DEBUG=False
 SECRET_KEY=tu-clave-secreta-segura
 ALLOWED_HOSTS=tudominio.com,www.tudominio.com
 CSRF_TRUSTED_ORIGINS=https://tudominio.com
+HTTPS=False
+TIME_ZONE=America/Monterrey
 
 # Superuser (se crea automaticamente)
 SUPERUSER_USERNAME=admin
@@ -257,14 +259,12 @@ SUPERUSER_PASSWORD=password-seguro
 DB_NAME=portfolio
 DB_USER=user
 DB_PASSWORD=super_secure_password
+DB_ROOT_PASSWORD=root_password
 DB_HOST=db
 DB_PORT=3306
 
-# Variables MySQL (deben coincidir con DB_*)
-MYSQL_DATABASE=portfolio
-MYSQL_USER=user
-MYSQL_PASSWORD=super_secure_password
-MYSQL_ROOT_PASSWORD=very_strong_root_password
+#Puerto de entrada (nginx)
+PORT=8000
 ```
 
 ### Ejecutar con Docker Compose
@@ -275,7 +275,7 @@ MYSQL_ROOT_PASSWORD=very_strong_root_password
 docker-compose up --build
 ```
 
-2. La aplicacion estara disponible en `http://localhost:8000`
+2. La aplicacion estara disponible en `http://localhost:{PORT}`
 
 3. Para detener los contenedores:
 
@@ -311,7 +311,7 @@ Nginx actua como servidor web inverso y sirve:
 - Archivos media (`/media/`) desde el volumen
 - Peticiones dinamicas dirigidas a Gunicorn (`/`)
 
-Configuracion en `nginx/default.conf`:
+Configuracion en `nginx.conf`:
 
 - Puerto de entrada: 80
 - Tamano maximo de subida: 20MB
@@ -344,7 +344,7 @@ DB_PORT=3306
 ### Personalizacion
 
 - **Puertos**: Modifica los puertos en `docker-compose.yml`
-- **Dominio**: Cambia `server_name` en `nginx/default.conf`
+- **Dominio**: Cambia `server_name` en `nginx.conf`
 - **Superuser**: Las variables `SUPERUSER_*` crean el admin automaticamente en el primer inicio
 
 ## Configuracion de produccion
