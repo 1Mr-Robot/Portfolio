@@ -226,6 +226,84 @@ p, .project_description * {
     color: var(--text-medium);
 }
 
+p.note,
+p.tip,
+p.important,
+p.warning,
+p.caution {
+    position: relative;
+    padding: 30px 12px 12px;
+    border-left: 4px solid;
+    border-radius: 6px;
+    background-color: var(--panel);
+    color: var(--text-medium);
+    margin: 10px 0;
+}
+
+p.note::before,
+p.tip::before,
+p.important::before,
+p.warning::before,
+p.caution::before {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+p.note {
+    border-color: #3b82f6;
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+p.note::before {
+    content: "Nota";
+    color: #3b82f6;
+}
+
+p.tip {
+    border-color: #10b981;
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+p.tip::before {
+    content: "Tip";
+    color: #10b981;
+}
+
+p.important {
+    border-color: #8b5cf6;
+    background-color: rgba(139, 92, 246, 0.1);
+}
+
+p.important::before {
+    content: "Importante";
+    color: #8b5cf6;
+}
+
+p.warning {
+    border-color: #f59e0b;
+    background-color: rgba(245, 158, 11, 0.1);
+}
+
+p.warning::before {
+    content: "Advertencia";
+    color: #f59e0b;
+}
+
+p.caution {
+    border-color: #ef4444;
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+p.caution::before {
+    content: "Precaución";
+    color: #ef4444;
+}
+
 .feature_container {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

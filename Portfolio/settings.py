@@ -162,6 +162,8 @@ CKEDITOR_5_CONFIGS = {
         'toolbar': [
             'heading', '|',
             'bold', 'italic', 'underline', 'strikethrough',
+            "|",
+            "style",
             '|',
             'numberedList', 'bulletedList',
             '|',
@@ -177,6 +179,35 @@ CKEDITOR_5_CONFIGS = {
             '|',
             'undo', 'redo'
         ],
+        "style": {
+            "definitions": [
+                {
+                    "name": "Nota",
+                    "element": "p",
+                    "classes": ["note"]
+                },
+                {
+                    "name": "Tip",
+                    "element": "p",
+                    "classes": ["tip"]
+                },
+                {
+                    "name": "Importante",
+                    "element": "p",
+                    "classes": ["important"]
+                },
+                {
+                    "name": "Advertencia",
+                    "element": "p",
+                    "classes": ["warning"]
+                },
+                {
+                    "name": "Precaución",
+                    "element": "p",
+                    "classes": ["caution"]
+                }
+            ]
+        },
         'height': '300px'
     }
 }
