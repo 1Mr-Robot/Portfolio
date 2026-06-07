@@ -59,9 +59,6 @@ body.no-scroll {
 
 /* Botón de cierre */
 #image_modal_close {
-    position: fixed;
-    top: 80px;
-    right: 20px;
     background: var(--panel);
     border: none;
     color: var(--text-high);
@@ -75,6 +72,18 @@ body.no-scroll {
     transition: background-color 0.3s ease, transform 0.3s ease;
     display: none;
     animation: close 1.5s forwards;
+}
+
+#image_modal_close.inside {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#image_modal_close.outside {
+    position: fixed;
+    top: 80px;
+    right: 20px;
 }
 
 #image_modal_container[open] #image_modal_close {

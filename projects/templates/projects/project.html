@@ -14,11 +14,12 @@
 {% block extra_style %}
 <link rel="stylesheet" href="{% static 'core/styles/projects.css' %}">
 <link rel="stylesheet" href="{% static 'projects/styles/project.css' %}">
+<link rel="stylesheet" href="{% static 'cotton/styles/image_modal.css' %}">
 {% endblock extra_style %}
 
 {% block extra_script %}
 <script src="{% static 'core/js/header_static.js' %}" defer></script>
-<script src="{% static 'projects/js/project_images.js' %}" defer></script>
+<script src="{% static 'cotton/js/image_modal.js' %}" defer></script>
 <script src="{% static 'projects/js/share_buttons.js' %}" defer></script>
 {% endblock extra_script %}
 
@@ -56,7 +57,7 @@
         <div class="carousel-inner">
             {% for image in project.images.all %}
                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                    <button type="button" commandfor="dialog_carousel" command="show-modal" class="carousel-img-wrapper">
+                    <button type="button" commandfor="image_modal_container" command="show-modal" class="carousel-img-wrapper">
                         <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ image.caption }}">
                     </button>
                 </div>
@@ -72,15 +73,7 @@
         </button>
     </div>
 
-    <dialog id="dialog_carousel" closedby="any" class="container">
-        <div>
-            <img src="" id="dialog_image" class="d-block"
-                alt="Imagen del carrusel del proyecto {{ project.title }}">
-            <button type="button" commandfor="dialog_carousel" command="close">
-                {% include 'icons/x.svg' %}
-            </button>
-        </div>
-    </dialog>
+    <c-image_modal position="inside" />
 
     <div id="content_divider">
         <div class="content_panel">

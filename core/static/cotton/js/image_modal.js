@@ -24,3 +24,11 @@ document.querySelectorAll('.img_container').forEach(button => {
         dialogImg.alt = img.alt || '';
     });
 });
+
+document.querySelectorAll('.carousel-img-wrapper').forEach(button => {
+    button.addEventListener('click', () => {
+        const img = button.querySelector('img');
+        dialogImg.src = img.src;
+        dialogImg.alt = img.alt || '';
+    });
+});
