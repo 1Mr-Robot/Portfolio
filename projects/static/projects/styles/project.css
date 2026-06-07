@@ -1,6 +1,15 @@
-html.no-scroll,
-body.no-scroll {
-    overflow: hidden;
+:root {
+    --note: #3b82f6;
+    --note-rgb: 59, 130, 246;
+    --tip: #10b981;
+    --tip-low: #248967;
+    --tip-rgb: 16, 185, 129;
+    --important: #8b5cf6;
+    --important-rgb: 139, 92, 246;
+    --warning: #f59e0b;
+    --warning-rgb: 245, 158, 11;
+    --caution: #ef4444;
+    --caution-rgb: 239, 68, 68;
 }
 
 main {
@@ -184,53 +193,53 @@ p.caution::before {
 }
 
 p.note {
-    border-color: #3b82f6;
-    background-color: rgba(59, 130, 246, 0.1);
+    border-color: var(--note);
+    background-color: rgba(var(--note-rgb), 0.1);
 }
 
 p.note::before {
     content: "Nota";
-    color: #3b82f6;
+    color: var(--note);
 }
 
 p.tip {
-    border-color: #10b981;
-    background-color: rgba(16, 185, 129, 0.1);
+    border-color: var(--tip);
+    background-color: rgba(var(--tip-rgb), 0.1);
 }
 
 p.tip::before {
     content: "Tip";
-    color: #10b981;
+    color: var(--tip);
 }
 
 p.important {
-    border-color: #8b5cf6;
-    background-color: rgba(139, 92, 246, 0.1);
+    border-color: var(--important);
+    background-color: rgba(var(--important-rgb), 0.1);
 }
 
 p.important::before {
     content: "Importante";
-    color: #8b5cf6;
+    color: var(--important);
 }
 
 p.warning {
-    border-color: #f59e0b;
-    background-color: rgba(245, 158, 11, 0.1);
+    border-color: var(--warning);
+    background-color: rgba(var(--warning-rgb), 0.1);
 }
 
 p.warning::before {
     content: "Advertencia";
-    color: #f59e0b;
+    color: var(--warning);
 }
 
 p.caution {
-    border-color: #ef4444;
-    background-color: rgba(239, 68, 68, 0.1);
+    border-color: var(--caution);
+    background-color: rgba(var(--caution-rgb), 0.1);
 }
 
 p.caution::before {
     content: "Precaución";
-    color: #ef4444;
+    color: var(--caution);
 }
 
 .feature_container {
@@ -363,11 +372,11 @@ p.caution::before {
 }
 
 .success_copy_toast {
-    border: 1px solid var(--accent-cool);
+    border: 1px solid var(--tip);
 }
 
 .error_copy_toast {
-    border: 1px solid var(--accent-warm);
+    border: 1px solid var(--caution);
 }
 
 .toast .btn-close {
