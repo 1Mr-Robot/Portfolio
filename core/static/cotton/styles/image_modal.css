@@ -1,0 +1,96 @@
+/* No scroll mientras está abierto el modal */
+html.no-scroll,
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* Modal */
+#image_modal_container {
+    background: none;
+    border: none;
+    padding: 0;
+    transition: display 1s allow-discrete, overlay 1s allow-discrete;
+    animation: close 0.2s forwards;
+    &[open] {
+        animation: open 0.2s ease-in-out;
+    }
+}
+
+/* Animaciones */
+@keyframes open {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes close {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+/* Fondo */
+#image_modal_container::backdrop {
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.2s ease-in-out;
+}
+
+#image_modal_container[open]::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Imagen */
+#image_modal {
+    max-width: 90dvw;
+    max-height: 80dvh;
+    border-radius: 10px;
+}
+
+/* Botón de cierre */
+#image_modal_close {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: var(--panel);
+    border: none;
+    color: var(--text-high);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: none;
+    animation: close 1.5s forwards;
+}
+
+#image_modal_container[open] #image_modal_close {
+    animation: open 1s ease-in-out;
+    display: flex;
+}
+
+#image_modal_container #image_modal_close:hover {
+    background-color: var(--accent-warm);
+    transform: rotate(90deg);
+}
+
+#image_modal_container #image_modal_close svg {
+    transition: all 0.3s ease;
+}
+
+#image_modal_container #image_modal_close:hover svg {
+    color: var(--text-high);
+}
