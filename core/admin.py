@@ -1,6 +1,16 @@
 from django.contrib import admin
 from adminsortable2.admin import SortableAdminMixin
-from .models import SkillCategory, Skill, SocialNetwork, SocialUser
+from .models import Certificate, SkillCategory, Skill, SocialNetwork, SocialUser
+
+@admin.register(Certificate)
+class CertificateAdmin(SortableAdminMixin, admin.ModelAdmin):
+    readonly_fields = ('created', 'modified')
+    list_display = ('id', 'title', 'institution', 'start_date', 'type', 'active', 'order')
+    list_filter = ('active', 'type', 'institution')
+    search_fields = ('title', 'institution')
+    ordering = ('order',)
+    date_hierarchy = 'created'
+    sortable_by = ('order',)
 
 @admin.register(SkillCategory)
 class SkillCategoryAdmin(SortableAdminMixin, admin.ModelAdmin):

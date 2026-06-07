@@ -2,6 +2,34 @@ from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
 from .validators import validate_base_url
 
+class Certificate(models.Model):
+    TYPES = [
+        ('course', 'Curso'),
+        ('diploma', 'Diplomado'),
+        ('certification', 'Certificación'),
+    ]
+
+    title = models.CharField(max_length=100, verbose_name="Título")
+    institution = models.CharField(max_length=100, verbose_name="Institución")
+    url = models.URLField(max_length=255, blank=True, verbose_name="URL del certificado")
+    start_date = models.DateField(verbose_name="Fecha de inicio")
+    end_date = models.DateField(blank=True, null=True, verbose_name="Fecha de fin")
+    type = models.CharField(max_length=20, choices=TYPES, verbose_name="Tipo de certificado")
+    description = models.TextField(blank=True, null=True, verbose_name="Descripción")
+    image = models.ImageField(upload_to='certificates/', verbose_name="Imagen del certificado")
+    active = models.BooleanField(default=True, verbose_name='¿Activo?')
+    order = models.PositiveSmallIntegerField(default=0, verbose_name='Orden')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creado')
+    modified = models.DateTimeField(auto_now=True, verbose_name='Fecha de modificado')
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = "Certificado"
+        verbose_name_plural = "Certificados"
+
+    def __str__(self):
+        return f"{self.title} - {self.institution}"
+
 class SkillCategory(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name="Categoría")
     active = models.BooleanField(default=True, verbose_name='¿Activo?')

@@ -6,6 +6,7 @@ from django.core.files.base import ContentFile
 from io import BytesIO
 from PIL import Image
 from .models import Project, ProjectImage
+from core.models import Certificate
 from .services.og_image_processing import process_og_image
 
 @receiver(post_save, sender=Project)
@@ -49,9 +50,10 @@ def procesar_og_image(sender, instance, created, **kwargs):
     instance._processing = False
 
 @receiver(pre_save, sender=ProjectImage)
+@receiver(pre_save, sender=Certificate)
 def convert_image_to_webp(sender, instance, **kwargs):
     '''
-    Procesa las imagenes del modelo Project paraconvertirlas a WEBP.
+    Procesa las imagenes para convertirlas a WEBP.
     '''
     if not instance.image:
         return
