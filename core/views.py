@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.db.models import Prefetch
 from django.contrib.staticfiles import finders
 from django.http import FileResponse
-from .models import SkillCategory, Skill, SocialUser
+from .models import Certificate, SkillCategory, Skill, SocialUser
 from projects.models import Project
 
 def home(request):
@@ -16,12 +16,14 @@ def home(request):
     social_users_in_hero = social_users.filter(is_in_hero=True)
     email = SocialUser.objects.filter(social_network__slug='mail',active=True).first()
     projects = Project.objects.filter(active=True)
+    certificates = Certificate.objects.filter(active=True)
     return render(request, 'core/home.html', {
         'skill_categories': skill_categories,
         'social_users': social_users,
         'social_users_in_hero': social_users_in_hero,
         'email': email,
         'projects': projects,
+        'certificates': certificates
     })
 
 def robots_txt(request):

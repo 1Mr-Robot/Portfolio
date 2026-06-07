@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="{% static 'core/styles/main.css' %}">
 <link rel="stylesheet" href="{% static 'core/styles/about_me.css' %}">
 <link rel="stylesheet" href="{% static 'core/styles/projects.css' %}">
+<link rel="stylesheet" href="{% static 'core/styles/certificates.css' %}">
+<link rel="stylesheet" href="{% static 'cotton/styles/image_modal.css' %}">
 <link rel="stylesheet" href="{% static 'core/styles/skills.css' %}">
 <link rel="stylesheet" href="{% static 'core/styles/contact.css' %}">
 {% endblock extra_style %}
@@ -17,6 +19,7 @@
 {% block extra_script %}
 <script src="{% static 'core/js/header_scroll.js' %}" defer></script>
 <script src="{% static 'core/js/projects.js' %}" defer></script>
+<script src="{% static 'cotton/js/image_modal.js' %}" defer></script>
 <script src="{% static 'core/js/skills.js' %}" defer></script>
 {% endblock extra_script %}
 
@@ -91,6 +94,7 @@
     <nav id="main_links" aria-label="Footer">
         <a href="{% url 'home' %}#aboutme">Sobre mí</a>
         <a href="{% url 'home' %}#projects">Proyectos</a>
+        <a href="{% url 'home' %}#certificates">Certificados</a>
         <a href="{% url 'home' %}#skills">Habilidades</a>
         <a href="{% url 'home' %}#contact">Contacto</a>
     </nav>
@@ -162,6 +166,37 @@
             {% include 'icons/caret-down.svg' %}
         </button>
     </div>
+</section>
+
+<section id="certificates">
+    <h2>Certificados</h2>
+    
+    {% for certificate in certificates %}
+    <article class="certificate">
+        <button class="img_container" type="button" commandfor="image_modal_container" command="show-modal">
+            <img src="{{ certificate.image.url }}" alt="{{ certificate.title }}" loading="lazy">
+        </button>
+        <div class="certificate_body">
+            <div class="certificate_header">
+                <h3>{{ certificate.title }}</h3>
+                <span class="certificate_type {{ certificate.type }}">{{ certificate.get_type_display }}</span>
+            </div>
+            <div class="certificate_info">
+                <a href="{{ certificate.url }}" target="_blank" rel="noopener noreferrer" class="certificate_platform">
+                    {% include 'icons/link.svg' %}
+                    {{ certificate.institution }}
+                </a>
+                <span class="certificate_period">
+                    {% include 'icons/calendar.svg' %}
+                    {{ certificate.start_date|date:"F Y" }}{% if certificate.end_date %} - {{ certificate.end_date }}{% endif %}
+                </span>
+            </div>
+            <p>{{ certificate.description }}</p>
+        </div>
+    </article>    
+    {% endfor %}
+
+    <c-image_modal btn-position="outside" />
 </section>
 
 <section id="skills">
