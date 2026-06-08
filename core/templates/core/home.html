@@ -185,7 +185,7 @@
                 </a>
                 <span class="certificate_period">
                     {% include 'icons/calendar.svg' %}
-                    {{ certificate.start_date|date:"F Y" }}{% if certificate.end_date %} - {{ certificate.end_date }}{% endif %}
+                    {{ certificate.start_date|date:"F Y" }}{% if certificate.end_date %} - {{ certificate.end_date|date:"F Y" }}{% endif %}
                 </span>
             </div>
             <p>{{ certificate.description }}</p>
