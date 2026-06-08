@@ -1,0 +1,91 @@
+/* Botón */
+.more_btn {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--accent-cool);
+    color: var(--text-hight);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.more_btn:active {
+    transform: scale(0.95);
+}
+
+/* Texto del botón */
+.more_btn_text {
+    display: inline-block;
+    transition: opacity 0.25s ease;
+}
+
+.more_btn_text.changed {
+    opacity: 0;
+}
+
+/* Icono del botón */
+.more_btn_icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    display: grid;
+    place-items: center;
+    color: var(--text-hight);
+    transition: transform 0.3s ease;
+}
+
+.more_btn_icon.rotated {
+    transform: rotate(180deg);
+}
+
+/* Cuando el botón está hasta al final de los elementos */
+.more_btn.down {
+    justify-content: center;
+    font-size: 1.2rem;
+    display: none;
+    width: 100%;
+}
+
+.more_btn.down .more_btn_icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Elementos a ocultar */
+.extra {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease,
+        display 0.35s allow-discrete;
+}
+
+.extra.active {
+    
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.extra.active:not(.certificate) {
+    display: grid;
+}
+
+.extra.active:not(.card) {
+    display: flex;
+}
+
+@starting-style {
+    .extra.active {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}

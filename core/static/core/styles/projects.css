@@ -2,13 +2,6 @@
     margin: 30px auto;
 }
 
-#projects_header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .all_projects_btn {
     height: fit-content;
     display: flex;
@@ -185,29 +178,4 @@
 
 .card .card_link:hover, .card .card_link:hover svg {
     color: var(--text-hight);
-}
-
-.extra {
-    display: none;
-    opacity: 0;
-    transform: translateY(20px);
-    pointer-events: none;
-    transition:
-        opacity 0.35s ease,
-        transform 0.35s ease,
-        display 0.35s allow-discrete;
-}
-
-.extra.active {
-    display: grid;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-@starting-style {
-    .extra.active {
-        opacity: 0;
-        transform: translateY(20px);
-    }
 }

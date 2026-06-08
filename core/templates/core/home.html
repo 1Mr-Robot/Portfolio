@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="{% static 'core/styles/about_me.css' %}">
 <link rel="stylesheet" href="{% static 'core/styles/projects.css' %}">
 <link rel="stylesheet" href="{% static 'core/styles/certificates.css' %}">
+<link rel="stylesheet" href="{% static 'cotton/styles/more_button.css' %}">
 <link rel="stylesheet" href="{% static 'cotton/styles/image_modal.css' %}">
 <link rel="stylesheet" href="{% static 'core/styles/skills.css' %}">
 <link rel="stylesheet" href="{% static 'core/styles/contact.css' %}">
@@ -18,7 +19,7 @@
 
 {% block extra_script %}
 <script src="{% static 'core/js/header_scroll.js' %}" defer></script>
-<script src="{% static 'core/js/projects.js' %}" defer></script>
+<script src="{% static 'cotton/js/more_button.js' %}" defer></script>
 <script src="{% static 'cotton/js/image_modal.js' %}" defer></script>
 <script src="{% static 'core/js/skills.js' %}" defer></script>
 {% endblock extra_script %}
@@ -110,12 +111,9 @@
 </section>
 
 <section id="projects" class="container">
-    <div id="projects_header">
+    <div class="section_header">
         <h2>Proyectos</h2>
-        <button type="button" class="all_projects_btn" data-show="Mostrar menos" data-hidden="Mostrar todos">
-            <span class="all_projects_btn_text">Mostrar todos</span>
-            {% include 'icons/caret-down.svg' %}
-        </button>
+        <c-more_button section="projects" target="#card_container .card" />
     </div>
     <div id="card_container">
         {% for project in projects %}
@@ -161,16 +159,15 @@
             </div>
         </div>     
         {% endfor %}
-        <button type="button" class="all_projects_btn" data-show="Mostrar menos" data-hidden="Mostrar todos">
-            <span class="all_projects_btn_text">Mostrar todos</span>
-            {% include 'icons/caret-down.svg' %}
-        </button>
+        <c-more_button section="projects" target="#card_container .card" :down="True" />
     </div>
 </section>
 
 <section id="certificates">
-    <h2>Certificados</h2>
-    
+    <div class="section_header">
+        <h2>Certificados</h2>
+        <c-more_button section="certificates" target="#certificates .certificate" />
+    </div>
     {% for certificate in certificates %}
     <article class="certificate">
         <button class="img_container" type="button" commandfor="image_modal_container" command="show-modal">
@@ -195,6 +192,7 @@
         </div>
     </article>    
     {% endfor %}
+    <c-more_button section="certificates" target="#certificates .certificate" :down="True" />
 
     <c-image_modal btn-position="outside" />
 </section>

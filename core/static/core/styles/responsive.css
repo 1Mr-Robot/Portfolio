@@ -96,11 +96,11 @@
                 }
 
                 @media (max-width: 767px) {
-                    #projects_header .all_projects_btn {
+                    .more_btn:not(.down) {
                         display: none;
                     }
 
-                    #card_container .all_projects_btn {
+                    .more_btn.down {
                         display: flex;
                     }
 
