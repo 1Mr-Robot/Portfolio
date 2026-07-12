@@ -34,13 +34,13 @@
     <p class="title_footer">{{ project.summary }} • Finalizado el {{ project.end_date }}</p>
     <div class="links_container">
         {% if project.demo_url %}
-        <a href="{{ project.demo_url }}" class="link primary_link">
+        <a href="{{ project.demo_url }}" class="link primary_link" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" data-umami-event="Abrir demo" data-umami-event-proyecto="{{ project.title }}" data-umami-event-componente="Pantalla del proyecto">
             {% include 'icons/rocket.svg' %}
             Demo en vivo
         </a>
         {% endif %}
         {% if project.repository_url %}
-        <a href="{{ project.repository_url }}" class="link secondary_link">
+        <a href="{{ project.repository_url }}" class="link secondary_link" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" data-umami-event="Abrir repositorio" data-umami-event-proyecto="{{ project.title }}" data-umami-event-componente="Pantalla del proyecto">
             {% include 'icons/github.svg' %}
             Repositorio
         </a>
@@ -57,17 +57,17 @@
         <div class="carousel-inner">
             {% for image in project.images.all %}
                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                    <button type="button" commandfor="image_modal_container" command="show-modal" class="carousel-img-wrapper">
+                    <button type="button" commandfor="image_modal_container" command="show-modal" class="carousel-img-wrapper" data-umami-event="Abrir imagen del proyecto" data-umami-event-proyecto="{{ project.title }}" data-umami-event-imagen="{{ image.caption }}">
                         <img src="{{ image.image.url }}" class="d-block w-100" alt="{{ image.caption }}">
                     </button>
                 </div>
             {% endfor %}
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev" data-umami-event="Cambiar imagen del proyecto" data-umami-event-direccion="Anterior" data-umami-event-proyecto="{{ project.title }}">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Anterior</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next" data-umami-event="Cambiar imagen del proyecto" data-umami-event-direccion="Siguiente" data-umami-event-proyecto="{{ project.title }}">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Siguiente</span>
         </button>
@@ -113,27 +113,27 @@
             <aside class="aside_content">
                 <h3>Compartir</h3>
                 <div class="share_container">
-                    <button type="button" id="copy_button" class="share_link">
+                    <button type="button" id="copy_button" class="share_link" data-umami-event="Copiar enlace del proyecto" data-umami-event-proyecto="{{ project.title }}">
                         <div class="share_icon">
                             {% include 'icons/link.svg' %}
                         </div>
                         <span>Copiar enlace</span>
                     </button>
-                    <a href="" target="_blank" rel="noopener noreferrer" id="email_button" class="share_link">
+                    <a href="" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" id="email_button" class="share_link" data-umami-event="Enviar proyecto por correo" data-umami-event-proyecto="{{ project.title }}">
                         <div class="share_icon">
                             {% include 'icons/mail.svg' %}
                         </div>
                         <span>Correo</span>
                     </a>
-                    <a href="" target="_blank" rel="noopener noreferrer" id="facebook_button"
-                        class="share_link">
+                    <a href="" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" id="facebook_button"
+                        class="share_link" data-umami-event="Compartir proyecto en Facebook" data-umami-event-proyecto="{{ project.title }}">
                         <div class="share_icon">
                             {% include 'icons/facebook.svg' %}
                         </div>
                         <span>Facebook</span>
                     </a>
-                    <a href="" target="_blank" rel="noopener noreferrer" id="whatsapp_button"
-                        class="share_link">
+                    <a href="" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" id="whatsapp_button"
+                        class="share_link" data-umami-event="Compartir proyecto en WhatsApp" data-umami-event-proyecto="{{ project.title }}">
                         <div class="share_icon">
                             {% include 'icons/whatsapp.svg' %}
                         </div>
@@ -147,7 +147,7 @@
         <h2>Otros proyectos</h2>
         <div id="project_carousel">
             {% for other_project in other_projects %}
-            <a href="{% url 'project' other_project.slug %}" class="project">
+            <a href="{% url 'project' other_project.slug %}" class="project" data-umami-event="Abrir proyecto" data-umami-event-proyecto="{{ other_project.title }}" data-umami-event-componente="Sección de otros proyectos">
                 <div class="project_inner">
                     {% with other_project.images.first as image %}
                         {% if image %}

@@ -73,7 +73,7 @@
                     <div class="info_content">
                         {% include 'icons/user.svg' %}
                         <div>
-                            <span>21 años</span>
+                            <span>22 años</span>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
             <ul>
                 {% for social in social_users_in_hero %}
                 <li>
-                    <a href="{{ social.social_network.base_url }}{{ social.profile_url }}" target="_blank">
+                    <a href="{{ social.social_network.base_url }}{{ social.profile_url }}" rel="noopener noreferrer" referrerpolicy="no-referrer" target="_blank" aria-label="{{ social.social_network.name}}" data-umami-event="Abrir red social" data-umami-event-red="{{ social.social_network.name }}" data-umami-event-componente="Hero">
                         {% with icon='icons/'|add:social.social_network.slug|add:'.svg' %}
                             {% include icon %}
                         {% endwith %}
@@ -93,11 +93,11 @@
         </div>
     </div>
     <nav id="main_links" aria-label="Footer">
-        <a href="{% url 'home' %}#aboutme">Sobre mí</a>
-        <a href="{% url 'home' %}#projects">Proyectos</a>
-        <a href="{% url 'home' %}#certificates">Certificados</a>
-        <a href="{% url 'home' %}#skills">Habilidades</a>
-        <a href="{% url 'home' %}#contact">Contacto</a>
+        <a href="{% url 'home' %}#aboutme" data-umami-event="Ir a sobre mí" data-umami-event-componente="Hero">Sobre mí</a>
+        <a href="{% url 'home' %}#projects" data-umami-event="Ir a proyectos" data-umami-event-componente="Hero">Proyectos</a>
+        <a href="{% url 'home' %}#certificates" data-umami-event="Ir a certificados" data-umami-event-componente="Hero">Certificados</a>
+        <a href="{% url 'home' %}#skills" data-umami-event="Ir a habilidades" data-umami-event-componente="Hero">Habilidades</a>
+        <a href="{% url 'home' %}#contact" data-umami-event="Ir a contacto" data-umami-event-componente="Hero">Contacto</a>
     </nav>
 </main>
 
@@ -118,7 +118,7 @@
     <div id="card_container">
         {% for project in projects %}
         <div class="card">
-            <a href="{% url 'project' project.slug %}" class="card_image_container">
+            <a href="{% url 'project' project.slug %}" class="card_image_container" data-umami-event="Abrir proyecto" data-umami-event-proyecto="{{ project.title }}" data-umami-event-componente="Sección proyectos" data-umami-event-elemento="Imagen">
                 {% with project.images.first as image %}
                     {% if image %}
                         <img src="{{ image.image.url }}" alt="{{ image.caption }}" loading="lazy">
@@ -127,7 +127,7 @@
             </a>
             <div class="card_body">
                 <h3>
-                    <a href="{% url 'project' project.slug %}">
+                    <a href="{% url 'project' project.slug %}" data-umami-event="Abrir proyecto" data-umami-event-proyecto="{{ project.title }}" data-umami-event-componente="Sección proyectos" data-umami-event-elemento="Título">
                         {{ project.title }}
                     </a>
                 </h3>
@@ -141,17 +141,17 @@
                 <p>{{ project.short_description }}</p>
                 <div class="card_links_container">
                     {% if project.demo_url %}
-                    <a href="{{ project.demo_url }}" class="card_link">
+                    <a href="{{ project.demo_url }}" class="card_link" target="_blank" data-umami-event="Abrir demo" data-umami-event-proyecto="{{ project.title }}" data-umami-event-componente="Sección proyectos">
                         {% include 'icons/rocket.svg' %}
                         Ver demo
                     </a>
                     {% elif project.repository_url %}
-                    <a href="{{ project.repository_url }}" class="card_link">
+                    <a href="{{ project.repository_url }}" class="card_link" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" data-umami-event="Abrir repositorio" data-umami-event-proyecto="{{ project.title }}" data-umami-event-componente="Sección proyectos">
                         {% include 'icons/github.svg' %}
                         Ver repositorio
                     </a>
                     {% endif %}
-                    <a href="{% url 'project' project.slug %}" class="card_link {% if not project.demo_url and not project.repository_url %}double_column{% endif %}">
+                    <a href="{% url 'project' project.slug %}" class="card_link {% if not project.demo_url and not project.repository_url %}double_column{% endif %}" data-umami-event="Abrir proyecto" data-umami-event-proyecto="{{ project.title }}" data-umami-event-componente="Sección proyectos" data-umami-event-elemento="Botón más info">
                         {% include 'icons/info.svg' %}
                         Más info
                     </a>
@@ -170,7 +170,7 @@
     </div>
     {% for certificate in certificates %}
     <article class="certificate">
-        <button class="img_container" type="button" commandfor="image_modal_container" command="show-modal">
+        <button class="img_container" type="button" commandfor="image_modal_container" command="show-modal" data-umami-event="Abrir imagen de certificado" data-umami-event-certificado="{{ certificate.title }}">
             <img src="{{ certificate.image.url }}" alt="{{ certificate.title }}" loading="lazy">
         </button>
         <div class="certificate_body">
@@ -179,7 +179,7 @@
                 <span class="certificate_type {{ certificate.type }}">{{ certificate.get_type_display }}</span>
             </div>
             <div class="certificate_info">
-                <a href="{{ certificate.url }}" target="_blank" rel="noopener noreferrer" class="certificate_platform">
+                <a href="{{ certificate.url }}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="certificate_platform" data-umami-event="Abrir link de certificado" data-umami-event-certificado="{{ certificate.title }}">
                     {% include 'icons/link.svg' %}
                     {{ certificate.institution }}
                 </a>
@@ -203,7 +203,7 @@
     <h3>{{ category.name }}</h3>
     <div class="skills_container">
         {% for skill in category.skills.all %}
-        <button type="button" class="skill" data-bs-toggle="collapse" data-bs-target="#skill_description_{{ skill.id }}" aria-expanded="false" aria-controls="skill_description_{{ skill.id }}">
+        <button type="button" class="skill" data-bs-toggle="collapse" data-bs-target="#skill_description_{{ skill.id }}" aria-expanded="false" aria-controls="skill_description_{{ skill.id }}" data-umami-event="Abrir descripción de habilidad" data-umami-event-habilidad="{{ skill.name }}">
             {{ skill.icon|safe }}
             {{ skill.name }}
         </button>
@@ -220,7 +220,7 @@
 <section id="contact">
     <h2>Contacto</h2>
     {% for social in social_users %}
-    <a href="{{ social.social_network.base_url }}{{ social.profile_url }}" target="_blank" class="contact_{{ social.social_network.slug }}">
+    <a href="{{ social.social_network.base_url }}{{ social.profile_url }}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" class="contact_{{ social.social_network.slug }}" data-umami-event="Abrir red social" data-umami-event-red="{{ social.social_network.name }}" data-umami-event-componente="Sección contacto">
         {% with icon='icons/'|add:social.social_network.slug|add:'-fill.svg' %}
             {% include icon %}
         {% endwith %}

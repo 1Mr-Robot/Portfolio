@@ -56,11 +56,12 @@ Timestamp: <span id="current-time" class="number">-</span>
         <section id="other-links">
             <h2>Prueba con estos enlaces</h2>
             <nav class="link-nav">
-                <a href="{% url 'home' %}#home">Inicio</a>
-                <a href="{% url 'home' %}#aboutme">Sobre mí</a>
-                <a href="{% url 'home' %}#projects">Proyectos</a>
-                <a href="{% url 'home' %}#skills">Habilidades</a>
-                <a href="{% url 'home' %}#contact">Contacto</a>
+                <a href="{% url 'home' %}#home" data-umami-event="Ir a inicio" data-umami-event-componente="Error 404">Inicio</a>
+                <a href="{% url 'home' %}#aboutme" data-umami-event="Ir a sobre mí" data-umami-event-componente="Error 404">Sobre mí</a>
+                <a href="{% url 'home' %}#projects" data-umami-event="Ir a proyectos" data-umami-event-componente="Error 404">Proyectos</a>
+                <a href="{% url 'home' %}#certificates" data-umami-event="Ir a certificados" data-umami-event-componente="Error 404">Certificados</a>
+                <a href="{% url 'home' %}#skills" data-umami-event="Ir a habilidades" data-umami-event-componente="Error 404">Habilidades</a>
+                <a href="{% url 'home' %}#contact" data-umami-event="Ir a contacto" data-umami-event-componente="Error 404">Contacto</a>
             </nav>
         </section>
     </main>

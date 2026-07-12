@@ -352,17 +352,18 @@ p.caution::before {
 }
 
 .toast {
-    background-color: var(--panel);
     color: var(--text-high);
     border-radius: 8px;
 }
 
 .success_copy_toast {
     border: 1px solid var(--tip);
+    background-color: rgba(var(--tip-rgb), 0.3);
 }
 
 .error_copy_toast {
     border: 1px solid var(--caution);
+    background-color: rgba(var(--caution-rgb), 0.3);
 }
 
 .toast .btn-close {

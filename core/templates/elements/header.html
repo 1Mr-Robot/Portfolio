@@ -1,7 +1,7 @@
 {% load static %}
 <div id="open_navbar_button_container">
     <div>
-        <a href="{% url 'home' %}#home" class="brand_link">
+        <a href="{% url 'home' %}#home" class="brand_link" data-umami-event="Ir a inicio" data-umami-event-componente="Logo mobile">
             {% include "icons/brand.svg" %}
             Uziel.app
         </a>
@@ -13,7 +13,7 @@
 
 <nav id="navbar">
     <div class="brand_container">
-        <a href="{% url 'home' %}#home" class="brand_link">
+        <a href="{% url 'home' %}#home" class="brand_link" data-umami-event="Ir a inicio" data-umami-event-componente="Logo desktop">
             {% include "icons/brand.svg" %}
             Uziel.app
         </a>
@@ -23,15 +23,15 @@
     </div>
     <ul id="navbar_links">
         <li>
-            <a href="{% url 'home' %}#home">Inicio</a>
+            <a href="{% url 'home' %}#home" data-umami-event="Ir a inicio" data-umami-event-componente="Navbar">Inicio</a>
         </li>
         <li>
-            <a href="{% url 'home' %}#aboutme">Sobre mí</a>
+            <a href="{% url 'home' %}#aboutme" data-umami-event="Ir a sobre mí" data-umami-event-componente="Navbar">Sobre mí</a>
         </li>
         <li id="projects_li">
             <div id="trigger">
                 <div>
-                    <a href="{% url 'home' %}#projects">Proyectos</a>
+                    <a href="{% url 'home' %}#projects" data-umami-event="Ir a proyectos" data-umami-event-componente="Navbar">Proyectos</a>
                     <button type="button" id="button_trigger">
                         <span>
                             {% include 'icons/chevron-down.svg' %}
@@ -40,19 +40,19 @@
                 </div>
                 <ul id="project_list">
                     {% for project in projects %}
-                        <li><a href="{% url 'project' project.slug %}">{{ project.title }}</a></li>
+                        <li><a href="{% url 'project' project.slug %}" data-umami-event="Abrir proyecto" data-umami-event-proyecto="{{ project.title }}" data-umami-event-componente="Navbar">{{ project.title }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
         </li>
         <li>
-            <a href="{% url 'home' %}#certificates">Certificados</a>
+            <a href="{% url 'home' %}#certificates" data-umami-event="Ir a certificados" data-umami-event-componente="Navbar">Certificados</a>
         </li>
         <li>
-            <a href="{% url 'home' %}#skills">Habilidades</a>
+            <a href="{% url 'home' %}#skills" data-umami-event="Ir a habilidades" data-umami-event-componente="Navbar">Habilidades</a>
         </li>
         <li>
-            <a href="{% url 'home' %}#contact">Contacto</a>
+            <a href="{% url 'home' %}#contact" data-umami-event="Ir a contacto" data-umami-event-componente="Navbar">Contacto</a>
         </li>
     </ul>
 </nav>

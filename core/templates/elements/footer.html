@@ -1,7 +1,7 @@
 {% load static %}
 <div class="footer_container container">
     <div class="footer_brand">
-        <a href="{% url 'home' %}#home" class="brand_link">
+        <a href="{% url 'home' %}#home" class="brand_link" data-umami-event="Ir a inicio" data-umami-event-componente="Logo footer">
             {% include "icons/brand.svg" %}
             Uziel.app
         </a>
@@ -9,17 +9,17 @@
     </div>
 
     <nav class="footer_nav" aria-label="Footer">
-        <a href="{% url 'home' %}#home">Inicio</a>
-        <a href="{% url 'home' %}#aboutme">Sobre mí</a>
-        <a href="{% url 'home' %}#projects">Proyectos</a>
-        <a href="{% url 'home' %}#certificates">Certificados</a>
-        <a href="{% url 'home' %}#skills">Habilidades</a>
-        <a href="{% url 'home' %}#contact">Contacto</a>
+        <a href="{% url 'home' %}#home" data-umami-event="Ir a inicio" data-umami-event-componente="Footer">Inicio</a>
+        <a href="{% url 'home' %}#aboutme" data-umami-event="Ir a sobre mí" data-umami-event-componente="Footer">Sobre mí</a>
+        <a href="{% url 'home' %}#projects" data-umami-event="Ir a proyectos" data-umami-event-componente="Footer">Proyectos</a>
+        <a href="{% url 'home' %}#certificates" data-umami-event="Ir a certificados" data-umami-event-componente="Footer">Certificados</a>
+        <a href="{% url 'home' %}#skills" data-umami-event="Ir a habilidades" data-umami-event-componente="Footer">Habilidades</a>
+        <a href="{% url 'home' %}#contact" data-umami-event="Ir a contacto" data-umami-event-componente="Footer">Contacto</a>
     </nav>
 
     <div class="footer_social">
         {% for social in social_users_in_hero %}
-        <a href="{{ social.social_network.base_url }}{{ social.profile_url }}" target="_blank" aria-label="{{ social.social_network.name }}" class="social_link">
+        <a href="{{ social.social_network.base_url }}{{ social.profile_url }}" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="{{ social.social_network.name }}" class="social_link" data-umami-event="Abrir red social" data-umami-event-red="{{ social.social_network.name }}" data-umami-event-componente="Footer">
             {% with icon='icons/'|add:social.social_network.slug|add:'.svg' %}
                 {% include icon %}
             {% endwith %}

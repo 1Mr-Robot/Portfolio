@@ -57,15 +57,15 @@ RequestID: <span id="id" class="number">-</span>
         <section class="buttons">
             <h2>Intenta con alguna de estas acciones</h2>
             <div>
-                <button type="button" id="reload-btn" class="button primary-btn">
+                <button type="button" id="reload-btn" class="button primary-btn" data-umami-event="Recargar página" data-umami-event-componente="Error 500">
                     {% include "icons/reload.svg" %}
                     Recargar página
                 </button>
-                <a href="{% url 'home' %}#home" id="home-btn" class="button primary-btn">
+                <a href="{% url 'home' %}#home" id="home-btn" class="button primary-btn" data-umami-event="Ir a inicio" data-umami-event-componente="Error 500">
                     {% include "icons/home.svg" %}
                     Volver al inicio
                 </a>
-                <a href="" id="email-btn" class="button secondary-btn">
+                <a href="" rel="noopener noreferrer" referrerpolicy="no-referrer" id="email-btn" class="button secondary-btn" data-umami-event="Abrir red social" data-umami-event-red="Correo" data-umami-event-componente="Error 500">
                     {% include "icons/mail.svg" %}
                     Contactar al correo
                 </a>

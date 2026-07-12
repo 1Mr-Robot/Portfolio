@@ -76,6 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     text.textContent = expanded ? btn.dataset.show : btn.dataset.hidden;
                     text.classList.remove('changed');
                 }
+
+                // Actualiza el evento de Umami según la acción del próximo clic
+                btn.dataset.umamiEvent = expanded ? 'Mostrar menos elementos' : 'Mostrar todos los elementos';
             }, 250);
         });
     });

@@ -1,4 +1,4 @@
-<button type="button" class="more_btn {% if down %}down{% endif %}" data-show="Mostrar menos" data-hidden="Mostrar todos" data-section="{{ section }}" data-target="{{ target }}">
+<button type="button" class="more_btn {% if down %}down{% endif %}" data-show="Mostrar menos" data-hidden="Mostrar todos" data-section="{{ section }}" data-target="{{ target }}" data-umami-event="Mostrar todos los elementos" data-umami-event-componente="Sección {{ section }}" data-umami-event-modo="{% if down %}Móvil{% else %}Computadora{% endif %}">
     <span class="more_btn_text">Mostrar todos</span>
     {% include 'icons/caret-down.svg' %}
 </button>
