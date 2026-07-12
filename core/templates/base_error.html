@@ -14,8 +14,10 @@
     {% block extra_style %}{% endblock extra_style %}
     <link rel="stylesheet" href="{% static 'core/styles/footer.css' %}">
     <link rel="stylesheet" href="{% static 'core/styles/responsive.css' %}">
-    {# Stats tracking #}
+    {# Stats tracking (solo en producción) #}
+    {% if not DEBUG %}
     <script defer src="https://stats.uziel.app/script.js" data-website-id="e8910a3a-0e26-4316-9ac4-1800c1c27f36"></script>
+    {% endif %}
 </head>
 <body>
     {% block content %}{% endblock content %}
